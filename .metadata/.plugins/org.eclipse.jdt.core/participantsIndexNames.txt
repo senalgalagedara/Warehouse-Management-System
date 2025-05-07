@@ -1,0 +1,9 @@
+INDEX VERSION 1.134
+C:\Users\user\Desktop\OOP project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3808922533.index
+\Warehouse-OOP\src\main\java
+C:\Users\user\Desktop\OOP project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4143026944.index
+\StockManagement\src\main\java
+C:\Users\user\Desktop\OOP project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2528113240.index
+\Warehouse-OOP\src\main\java
+C:\Users\user\Desktop\OOP project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2322288170.index
+\Y2_S1_Project\src\main\java

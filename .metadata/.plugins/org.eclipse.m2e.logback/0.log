@@ -1,0 +1,7 @@
+2025-05-07 21:55:23,632 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is not available. Remote download required.
+2025-05-07 22:44:24,222 [main] INFO  org.eclipse.jetty.server.Server - jetty-12.0.16; built: 2024-12-09T21:02:54.535Z; git: c3f88bafb4e393f23204dc14dc57b042e84debc7; jvm 21.0.6+7-LTS
+2025-05-07 22:44:24,366 [main] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@ec7072f{/wse,/wse,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@7e9db5c1{STARTED}}
+2025-05-07 22:44:24,367 [main] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-05-07 22:44:24,411 [main] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@7a96e9ad{HTTP/1.1, (http/1.1)}{0.0.0.0:60744}
+2025-05-07 22:44:24,423 [main] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@4fe9d963{STARTING}[12.0.16,sto=0] @2959790ms
+2025-05-07 22:44:24,942 [qtp561607650-728] INFO  o.e.j.e.nested.ContextHandler._wse - Warning: No org.apache.tomcat.JarScanner set in ServletContext. Falling back to default JarScanner implementation.
