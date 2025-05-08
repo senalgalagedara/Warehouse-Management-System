@@ -7,9 +7,8 @@ import java.util.*;
 
 import utils.DBConnection;
 
-public class StockController {
+public class customerInvoController {
 
-    /** Returns true if we successfully inserted one row into purchase_details */
     public static boolean insertData(String purchase_id,
                                      String product_id,
                                      String quantity,
@@ -38,7 +37,6 @@ public class StockController {
         return success;
     }
 
-    /** Fetch by detail_id: returns a List of Maps (columnName → value) */
     public static List<Map<String,String>> getById(String id) {
         List<Map<String,String>> results = new ArrayList<>();
         String sql = "SELECT detail_id, purchase_id, product_id, quantity, price_per_unit, purchase_date "
@@ -64,7 +62,6 @@ public class StockController {
         return results;
     }
 
-    /** Fetch all purchase_details */
     public static List<Map<String,String>> getAllPurchase() {
         List<Map<String,String>> results = new ArrayList<>();
         String sql = "SELECT detail_id, purchase_id, product_id, quantity, price_per_unit, purchase_date "
@@ -90,7 +87,6 @@ public class StockController {
         return results;
     }
 
-    /** Update purchase_details row by detail_id */
     public static boolean updateData(String detail_id,
                                      String purchase_id,
                                      String product_id,

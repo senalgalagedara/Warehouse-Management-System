@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.RequestDispatcher;
 
 import model.Product;
-import services.ProductService;
+import services.ProductController;
 
 @WebServlet("/updateProduct")
 public class updateProduct extends HttpServlet {
@@ -17,7 +17,7 @@ public class updateProduct extends HttpServlet {
             throws ServletException, IOException {
 
         Product p = new Product();
-        p.setProductId(Integer.parseInt(request.getParameter("productId")));
+        p.setProductID(request.getParameter("productId"));
         p.setProductName(request.getParameter("productName"));
         p.setBrand(request.getParameter("brand"));
         p.setQuantity(Integer.parseInt(request.getParameter("quantity")));
@@ -25,7 +25,7 @@ public class updateProduct extends HttpServlet {
         p.setManufacturedDate(Date.valueOf(request.getParameter("manufacturedDate")));
         p.setExpiredDate(Date.valueOf(request.getParameter("expiredDate")));
 
-        new ProductService().updateProduct(p);
+        new ProductController().updateProduct(p);
         RequestDispatcher rd = request.getRequestDispatcher("adminProduct");
         rd.forward(request, response);
     }

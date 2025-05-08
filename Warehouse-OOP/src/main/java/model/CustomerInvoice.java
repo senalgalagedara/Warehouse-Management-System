@@ -1,6 +1,6 @@
 package model;
 
-public class StockModel {
+public class CustomerInvoice {
 	
 	private int detail_id;
 	private String purchase_id;
@@ -9,7 +9,7 @@ public class StockModel {
 	private String price_per_unit;
 	private String purchase_date;
 	
-	public StockModel(int detail_id, String purchase_id, String product_id, String quantity, String price_per_unit,
+	public CustomerInvoice(int detail_id, String purchase_id, String product_id, String quantity, String price_per_unit,
 			String purchase_date) {
 		super();
 		this.detail_id = detail_id;

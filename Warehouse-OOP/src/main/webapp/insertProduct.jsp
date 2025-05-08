@@ -3,7 +3,7 @@
 <head><title>Add Product</title></head>
 <body>
 <h2>Add New Product</h2>
-<form action="${pageContext.request.contextPath}/productController" method="post">
+<form action="${pageContext.request.contextPath}/addProduct" method="post">
     <input type="hidden" name="action" value="insert"/>
     Product ID: <input type="text" name="productID" required/><br/>
     Name:       <input type="text" name="productName" required/><br/>

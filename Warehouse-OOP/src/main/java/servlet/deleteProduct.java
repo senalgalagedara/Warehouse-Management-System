@@ -7,15 +7,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.servlet.RequestDispatcher;
 
-import services.ProductService;
+import services.ProductController;
 
 @WebServlet("/deleteProduct")
 public class deleteProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("productId"));
-        new ProductService().deleteProduct(id);
+        String id = request.getParameter("productId");
+        new ProductController();
+		ProductController.deleteProduct(id);
         RequestDispatcher rd = request.getRequestDispatcher("adminProduct");
         rd.forward(request, response);
     }

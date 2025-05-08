@@ -7,9 +7,8 @@ import java.util.List;
 import model.Product;
 import utils.DBConnection;
 
-public class productController {
+public class ProductController { 
 
-    /** Inserts one new Product; returns true if insert succeeded */
     public static boolean addProduct(Product p) {
         String sql = """
             INSERT INTO product
@@ -17,8 +16,8 @@ public class productController {
             VALUES (?, ?, ?, ?, ?, ?, ?)
             """;
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, p.getProductID());
             ps.setString(2, p.getProductName());
@@ -29,19 +28,20 @@ public class productController {
             ps.setDate  (7, new java.sql.Date(p.getExpiredDate().getTime()));
 
             return ps.executeUpdate() > 0;
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
+            System.err.println("Error adding product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
     }
 
-    /** Fetches all products from the database */
     public static List<Product> getAllProducts() {
         String sql = "SELECT * FROM product";
         List<Product> list = new ArrayList<>();
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
@@ -55,13 +55,14 @@ public class productController {
                 p.setExpiredDate     (rs.getDate  ("expired_date"));
                 list.add(p);
             }
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching products: " + e.getMessage());
             e.printStackTrace();
         }
         return list;
     }
 
-    /** Updates an existing product; returns true if update succeeded */
     public static boolean updateProduct(Product p) {
         String sql = """
             UPDATE product SET
@@ -74,8 +75,8 @@ public class productController {
             WHERE product_id = ?
             """;
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, p.getProductName());
             ps.setString(2, p.getBrand());
@@ -86,22 +87,25 @@ public class productController {
             ps.setString(7, p.getProductID());
 
             return ps.executeUpdate() > 0;
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
+            System.err.println("Error updating product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
     }
 
-    /** Deletes a product by ID; returns true if delete succeeded */
     public static boolean deleteProduct(String productId) {
         String sql = "DELETE FROM product WHERE product_id = ?";
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, productId);
             return ps.executeUpdate() > 0;
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
+            System.err.println("Error deleting product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }

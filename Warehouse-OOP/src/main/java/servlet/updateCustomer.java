@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.customerInvoController;
+
 @WebServlet("/UpdateServlet")
-public class UpdateServlet extends HttpServlet {
+public class updateCustomer<StockModel> extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
   
@@ -29,9 +32,9 @@ public class UpdateServlet extends HttpServlet {
 		String purchase_date = request.getParameter("purchase_date");
 		
 		boolean isTrue;
-		isTrue = StockController.updatedata(purchase_date, purchase_id, product_id, quantity, price_per_unit, purchase_date);
+		isTrue = customerInvoController.updateData(purchase_date, purchase_id, product_id, quantity, price_per_unit, purchase_date);
 		 if(isTrue == true) {
-			   List<StockModel> purchasedetail =StockController.getById(detail_id);
+			   List<Map<String, String>> purchasedetail =customerInvoController.getById(detail_id);
 			   request.setAttribute("purchasedetails",purchasedetail);
 			   
 	    	   String alertMessage = "Data update Successful";

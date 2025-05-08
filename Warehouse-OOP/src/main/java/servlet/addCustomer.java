@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.customerInvoController;
+
 @WebServlet("/InsertServlet")
-public class InsertServlet extends HttpServlet {
+public class addCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
@@ -24,7 +26,7 @@ public class InsertServlet extends HttpServlet {
 	
        boolean isTrue;
        
-       isTrue = StockController.insertdata(purchase_id, product_id, quantity, price_per_unit, purchase_date);
+       isTrue = customerInvoController.insertData(purchase_id, product_id, quantity, price_per_unit, purchase_date);
     	   
        if(isTrue == true) {
     	   String alertMessage = "Data Insert Successful";
@@ -32,7 +34,7 @@ public class InsertServlet extends HttpServlet {
 
        }
        else {
-    	   RequestDispatcher dis2 = request.getRequestDispatcher("wrong.jsp");
+    	   RequestDispatcher dis2 = request.getRequestDispatcher("error.jsp");
     	   dis2.forward(request, response);
        }
 

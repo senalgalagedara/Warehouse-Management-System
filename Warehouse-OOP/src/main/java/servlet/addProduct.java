@@ -1,30 +1,45 @@
-// servlet/addProduct.java
 package servlet;
 
 import java.io.IOException;
-import java.sql.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import services.ProductController;
 import model.Product;
-import services.ProductService;
 
 @WebServlet("/addProduct")
 public class addProduct extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private static final long serialVersionUID = 1L;
 
-        Product p = new Product();
-        p.setProductId(Integer.parseInt(request.getParameter("productId")));
-        p.setProductName(request.getParameter("productName"));
-        p.setBrand(request.getParameter("brand"));
-        p.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-        p.setPrice(Double.parseDouble(request.getParameter("price")));
-        p.setManufacturedDate(Date.valueOf(request.getParameter("manufacturedDate")));
-        p.setExpiredDate(Date.valueOf(request.getParameter("expiredDate")));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        new ProductService().addProduct(p);
-        response.sendRedirect("adminProduct");
+    	String productId = request.getParameter("productId");
+        String productName = request.getParameter("productName");
+        String brand = request.getParameter("brand");
+        String quantity = request.getParameter("quantity");
+        String price = request.getParameter("price");
+        String manufacturedDate = request.getParameter("manufacturedDate");
+        String expiredDate = request.getParameter("expiredDate");
+
+        Product product = new Product();
+        product.setProductID(productId);
+        product.setProductName(productName);
+        product.setBrand(brand);
+        product.setQuantity(Integer.parseInt(quantity)); 
+        product.setPrice(Double.parseDouble(price)); 
+        product.setManufacturedDate(java.sql.Date.valueOf(manufacturedDate)); 
+        product.setExpiredDate(java.sql.Date.valueOf(expiredDate)); 
+
+        boolean isAdded = ProductController.addProduct(product);
+
+        if (isAdded) {
+            String alertMessage = "Product Added Successfully!";
+            response.getWriter().println("<script> alert('" + alertMessage + "'); window.location.href='adminProduct';</script>");
+        } else {
+            RequestDispatcher dis = request.getRequestDispatcher("error.jsp");    
+            dis.forward(request, response);
+        }
     }
 }
