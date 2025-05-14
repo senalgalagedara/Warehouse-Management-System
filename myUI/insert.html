@@ -11,14 +11,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body style="background-image: linear-gradient(#86ec83, #043c02); ">
+<body style="background: linear-gradient(135deg, #d0f0c0, #b2dfdb);">
 <div id="addMaterialModal" style="margin-top: 10px;margin-bottom:10px;">
-    <div class="modal-content" style="width:80% !important; 
+    <div class="modal-content" style="width:70% !important; 
                 background-color:rgba(255, 255, 255, 0.458);
-                backdrop-filter: blur(10px);
-                border-radius: 10px;">
-           <h2>Add Materials</h2> 
-        <form id="addMaterialForm">
+                backdrop-filter: blur(10px);    
+                border-radius: 10px;
+                border:2px solid white;
+                padding:20px 10px;">
+        <h2 style="text-align: center;">Add Materials</h2> 
+        <form id="addMaterialForm" style="width: 80%;margin:auto !important; ">
             <label for="productName">Product Name</label>
             <input type="text" id="productName" placeholder="name" required>
 
@@ -39,7 +41,44 @@
 
             <button type="submit">Submit</button>
         </form>
+        
     </div>
 </div>
+<script>
+document.getElementById('addMaterialForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const productName = document.getElementById('productName').value.trim();
+    const brand = document.getElementById('brand').value.trim();
+    const quantity = parseInt(document.getElementById('quantity').value.trim());
+    const unitPrice = parseFloat(document.getElementById('unitPrice').value.trim());
+    const mDate = new Date(document.getElementById('mDate').value);
+    const expDate = new Date(document.getElementById('expDate').value);
+
+    if (!productName || !brand || isNaN(quantity) || isNaN(unitPrice) || !mDate || !expDate) {
+        alert('Please fill in all fields correctly.');
+        return;
+    }
+
+    if (quantity <= 0) {
+        alert('Quantity must be greater than 0.');
+        return;
+    }
+
+    if (unitPrice <= 0) {
+        alert('Price must be greater than 0.');
+        return;
+    }
+
+    if (expDate <= mDate) {
+        alert('EXP Date must be after MFG Date.');
+        return;
+    }
+
+    alert('Form submitted successfully!');
+    // Uncomment this line to allow form submission:
+    // this.submit();
+});
+</script>
+
 </body>
 </html>
